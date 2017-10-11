@@ -1,16 +1,16 @@
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-
-public class Mapeador {
+public class Mapeador implements Importable {
 
 	private int particao;
 	private int hue;
+	private ConcurrentMap<Integer, Integer> mapa;
 	
-	public Mapeador(int particao, int hue) {
+	public Mapeador(int particao, int hue, ConcurrentMap<Integer, Integer> mapa) {
 		super();
 		this.hue = hue;
 		this.particao = particao;
+		this.mapa = mapa;
 	}
 	
 	public void funcao() {
@@ -20,10 +20,10 @@ public class Mapeador {
 		for (int i = total; i < total + hue; i++) {
 			/*System.out.println("Particao: " + particao + " --- " + i + " --- time: "
 					+ (System.currentTimeMillis() - ini));*/
-			PassarVergonha.mapa.put(i, i);
+			mapa.put(i, i);
 		}
 		long fim = System.currentTimeMillis();
-		System.out.println("Total: " + (fim - ini) + " - Mapa: " + PassarVergonha.mapa.size());
+		System.out.println("Total: " + (fim - ini) + " - Mapa: " + mapa.size());
 	}
 	
 }

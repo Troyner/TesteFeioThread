@@ -1,16 +1,12 @@
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.function.Function;
-
 public class Importador implements Runnable {
-	Mapeador mapeador;
+	Importable importable;
 
-	public Importador(Mapeador m) {
-		mapeador = m;
+	public Importador(Importable importable) {
+		this.importable = importable;
 	}
 
 	@Override
 	public void run() {
-		mapeador.funcao();
+		importable.funcao();
 	}
 }

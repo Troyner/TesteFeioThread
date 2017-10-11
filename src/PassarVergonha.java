@@ -5,13 +5,14 @@ import java.util.concurrent.Executors;
 
 public class PassarVergonha {
 	static ExecutorService service = Executors.newFixedThreadPool(4);
-	public static ConcurrentMap<Integer, Integer> mapa = new ConcurrentHashMap<Integer, Integer>();
 	
 	public static void main(String[] args) throws Exception {
-		Thread t = new Thread(new Importador(new Mapeador(0, 2500)));
-		Thread t2 = new Thread(new Importador(new Mapeador(1, 2500)));
-		Thread t3 = new Thread(new Importador(new Mapeador(2, 2500)));
-		Thread t4 = new Thread(new Importador(new Mapeador(3, 2500)));
+		ConcurrentMap<Integer, Integer> mapa = new ConcurrentHashMap<Integer, Integer>(); 
+		
+		Thread t = new Thread(new Importador(new Mapeador(0, 2500, mapa)));
+		Thread t2 = new Thread(new Importador(new Mapeador(1, 2500, mapa)));
+		Thread t3 = new Thread(new Importador(new Mapeador(2, 2500, mapa)));
+		Thread t4 = new Thread(new Importador(new Mapeador(3, 2500, mapa)));
 		long ini = System.currentTimeMillis();
 		service.execute(t);
 		service.execute(t2);
